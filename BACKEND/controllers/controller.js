@@ -1,46 +1,42 @@
-const client = require('../database/bd')
-const { generarToken } = require('../helpers/jwt')
-const {} = require('../helpers/jwt')
+const Encriptacion = require('../helpers/encrypted')
+const Usuarios = require('../helpers/usuarios')
     // const bcrypt = require('bcryptjs')
 
 
 const crearUsuario = async(req, res) => { //<<--- igualamos res = response para obtener tipado
-    // client.query("select * from usuarios limit 10", (error, results) => {
-    //     if (error) throw error;
-    //     res.status(200).json(results.rows)
-    // })
+    const { email, password } = req.body
+        // const email = 'dfarteaga@unicesmag.edu.co';
+        // const password = 'Pruebas@Unicesmag';
+    console.log(email, password);
+    let tokenEncript
 
-    try {
-        const { email, password, id } = req.body
-        const usuario = email
-        const passd = password
-        const uid = id
-        console.log(usuario, passd, uid);
+    let sesion = new Usuarios;
 
-        // salt = bcrypt.genSaltSync()
-        // passd = bcrypt.hashSync(passd, salt)
-
-        const token = await generarToken(uid, usuario)
-
-        console.log(token);
-
-        return res.status(200).json({
-            ok: true,
-            msg: 'correcto'
+    await sesion.objetoUsuario(email, password)
+        .then(res => {
+            if (res[0]) {
+                objUsuario = res[0];
+                let encriptacion = new Encriptacion().encriptar(JSON.stringify(objUsuario));
+                return sesion.generarToken({ encriptacion })
+            } else {
+                console.log('Usuario o Contraseña Incorrecta');
+            }
+        })
+        .then((token) => {
+            if (token) {
+                console.log(token);
+                tokenEncript = token
+            }
+        })
+        .catch(err => {
+            console.log(err);
         })
 
-
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            ok: true,
-            msg: 'ERROR! COMUNICARSE ADM.'
-        })
-    }
+    res.json(tokenEncript)
 
 
-
+    //     salt = bcrypt.genSaltSync()
+    //     passd = bcrypt.hashSync(passd, salt)
 }
-
 
 module.exports = { crearUsuario }

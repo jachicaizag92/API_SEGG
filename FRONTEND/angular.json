@@ -73,9 +73,12 @@
                     "configurations": {
                         "production": {
                             "browserTarget": "FRONTEND:build:production"
+
+
                         },
                         "development": {
                             "browserTarget": "FRONTEND:build:development"
+
                         }
                     },
                     "defaultConfiguration": "development"

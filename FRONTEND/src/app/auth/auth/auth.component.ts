@@ -12,8 +12,8 @@ export class AuthComponent implements OnInit {
 
 
   loginFormulario:FormGroup = this.fb.group({
-    email:['jachicaiza@outlook.com',[Validators.required, Validators.email]],
-    password:['Pruebas@Unicesmag', [Validators.required, Validators.minLength(6)]]
+    email:['',[Validators.required]],
+    password:['', [Validators.required, Validators.minLength(6)]]
   })
 
 

@@ -19,14 +19,16 @@ export class LoginService {
 
   constructor(private http:HttpClient) { }
 
-  login(email:string, password:string):Observable<ResponseUsiarioI>{
-    email = 'jachicaiza@outlook.com'
-    password = '123456'
+  login(email:string, password:string):Observable<any>{
+    // email = 'dfarteaga@unicesmag.edu.co'
+    // password = 'Pruebas@Unicesmag'
 
-    const url= `${this.baseUrl}/api`;
+    // const url= 'api/auth/login';
+    const url = 'http://localhost:3400/api/pr'
+
     const body = {email,password};
 
-    return this.http.post<ResponseUsiarioI>(url,body)
+    return this.http.post<any>(url,body)
 
     
     
