@@ -1,15 +1,12 @@
-const Encriptacion = require('../helpers/encrypted')
-const Usuarios = require('../helpers/usuarios')
-const objetoUsuario = require('../helpers/usuarioExiste')
-    // const bcrypt = require('bcryptjs')
+const { request, response } = require('express')
 
 
-const crearUsuario = async(req, res) => { //<<--- igualamos res = response para obtener tipado
-    const { email, password } = req.body
-        //     // const email = 'dfarteaga@unicesmag.edu.co';
-        //     // const password = 'Pruebas@Unicesmag';
-        // console.log(email, password);
-        // let tokenEncript
+const crearUsuario = async(req = request, res = response) => { //<<--- igualamos res = response para obtener tipado
+    // const { email, password } = req.body
+    // const email = 'dfarteaga@unicesmag.edu.co';
+    //     // const password = 'Pruebas@Unicesmag';
+    // console.log(email, password);
+    // let tokenEncript
 
     // let sesion
 

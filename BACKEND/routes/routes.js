@@ -1,9 +1,8 @@
-const { Router } = require('express');
-const router = Router();
+const { Router } = require('express')
 const { crearUsuario } = require('../controllers/controller')
-const { authUser } = require('../middlewares/usuario.middleware')
 
+const router = Router();
 
-router.post('/pr', [authUser], crearUsuario)
+router.get('/usr', crearUsuario)
 
-module.exports = router
+module.exports = { router }

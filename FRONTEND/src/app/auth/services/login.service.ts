@@ -24,11 +24,12 @@ export class LoginService {
     // password = 'Pruebas@Unicesmag'
 
     // const url= 'api/auth/login';
-    const url = 'http://localhost:3400/api/pr'
+    const url = 'http://localhost:3400/api/login/usr'
 
     const body = {email,password};
 
     return this.http.post<any>(url,body)
+  
 
     
     
