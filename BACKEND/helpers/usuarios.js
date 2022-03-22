@@ -7,66 +7,74 @@ class Usuarios extends Token {
 
     objUsuario
 
-    constructor() {
+
+
+    constructor(objUsuario) {
         super()
+        this.correoElectronico = objUsuario.correo_electronico
+        this.primerNombre = objUsuario.primer_nombre
+        this.segundoNombre = objUsuario.segundo_nombre
+        this.primerApellido = objUsuario.primer_apellido
+        this.segundoApellido = objUsuario.segundo_apellido
+        this.numeroIdentificacion = objUsuario.numero_identificacion
+        this.id = objUsuario.id
     }
 
-    objetoUsuario = async(email, password) => {
-        let respuesta;
-        if (!this.objUsuario) {
-            await client.query(`
-            select 
-                per.correo_electronico,
-                per.primer_nombre,
-                per.segundo_nombre,
-                per.primer_apellido,
-                per.segundo_apellido,
-                per.numero_identificacion,
-                per.id
-            from 
-                personas per
-                INNER JOIN usuarios usr
-                on per.id = usr.id_persona
-            where
-                usr.nombre_usuario = $1 AND
-                usr.clave_acceso = md5($2)
-            limit 1`, [email, password])
-                .then(res => {
-                    respuesta = res.rows;
-                })
-                .catch(err => {
-                    respuesta = err;
-                })
-                // .finally(() => {
-                //     client.end();
-                // })
-            this.objUsuario = respuesta
-        } else {
-            respuesta = this.objUsuario
-        }
-        return respuesta;
-    }
-
-
-    generarToken(payload) {
-        return super.genToken(payload)
-    }
+    // if (objUSuario) {
+    //     const {
+    //         correo_electronico,
+    //         primer_nombre,
+    //         segundo_nombre,
+    //         primer_apellido,
+    //         segundo_apellido,
+    //         numero_identificacion
+    //     } = usuario
+    //     console.log(usuario);
+    // }
+    // if(this.objUsuario === objUsuario)
 }
 
 
+//    credenciales(objUsuario){
 
-class UsuarioSingleton {
+//         this.correoElectronico = objUsuario.correo_electronico
+//         this.primerNombre = objUsuario.primer_nombre
+//         this.segundoNombre = objUsuario.segundo_nombre
+//         this.primerApellido = objUsuario.primer_apellido
+//         this.segundoApellido = objUsuario.segundo_apellido
+//         this.numeroIdentificacion = objUsuario.numero_identificacion
+//         this.id = objUsuario.id
 
-    constructor() {
-        throw new Error('usar singleton')
-    }
-    static getInstance() {
-        if (!UsuarioSingleton.instance) {
-            UsuarioSingleton.instance = new Usuarios();
-        }
-        return UsuarioSingleton.instance
-    }
-}
+//     }
+
+
+// generarToken(payload) {
+//     return super.genToken(payload)
+// }
+
+
+// class credencialUsuario {
+
+
+//     constructor(objUSuario) {
+
+//     }
+// }
+
+
+
+// class UsuarioSingleton {
+
+//     constructor() {
+//         throw new Error('usar singleton')
+//     }
+//     static getInstance(objUsuario) {
+//         if (!UsuarioSingleton.instance) {
+//             UsuarioSingleton.instance = new Usuarios(objUsuario);
+//         }
+//         return UsuarioSingleton.instance
+//     }
+// }
 
 
 
