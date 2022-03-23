@@ -19,9 +19,14 @@ const prueba = (req, res) => {
 }
 
 const prueba2 = (req, res) => {
+    // console.log(rreq.user.encriptacioneq.user.encriptacion);
+
+    const a = req.user.encriptacion;
+    const des = new Encriptacion().desencriptar(a)
+
     res.json({
-        msg: 'Hola desde prueba 2',
-        // token
+        msg: des
+            // token
 
     })
 }
