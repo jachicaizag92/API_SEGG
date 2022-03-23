@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { catchError, map, tap } from 'rxjs/operators';
 import { UserI, ResponseUsiarioI } from "../interfaces/user";
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -39,9 +40,17 @@ export class LoginService {
           }
         })
       )
+        this.validarToken()
+      
+    }  
 
+    validarToken(){
+      const url = 'http://localhost:3400/api/login/usr'
+      const headers = new HttpHeaders()
+        .set('x-token', localStorage.getItem('token') || '')
 
-    
+      return this.http.get(url, {headers})
     
   }
+
 }
