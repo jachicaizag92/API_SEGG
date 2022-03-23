@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { catchError, map, tap } from 'rxjs/operators';
 import { UserI, ResponseUsiarioI } from "../interfaces/user";
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,9 @@ export class LoginService {
     return {...this._usuario} //-- desestrucuturado para evitar maniuplar el _usuario
   }
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router:Router) {
+
+   }
 
   login(email:string, password:string):Observable<any>{
     // email = 'dfarteaga@unicesmag.edu.co'
@@ -29,7 +32,14 @@ export class LoginService {
     const body = {email,password};
 
     return this.http.post<any>(url,body)
-  
+      .pipe(
+        tap(resp =>{
+          if(resp !== ''){
+            localStorage.setItem('token', resp.token)
+          }
+        })
+      )
+
 
     
     

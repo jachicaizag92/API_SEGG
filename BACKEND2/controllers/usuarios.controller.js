@@ -8,12 +8,13 @@ const users = async(req = request, res = response) => {
     const { email, password } = req.body
 
     const token = await generarToken(email, password)
-        // console.log(token);
+
+    console.log(token);
 
 
     res.json({
         msg: 'peticion post a /api - Controlador',
-        token
+        token: token
 
     })
 }

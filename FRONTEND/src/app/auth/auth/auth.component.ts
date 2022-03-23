@@ -12,19 +12,19 @@ export class AuthComponent implements OnInit {
 
 
   loginFormulario:FormGroup = this.fb.group({
-    email:['',[Validators.required]],
-    password:['', [Validators.required, Validators.minLength(6)]]
+    email:['jachg2420',[Validators.required]],
+    password:['Pruebas@Unicesmag', [Validators.required, Validators.minLength(6)]]
   })
 
 
   constructor(private fb:FormBuilder, private loginservice:LoginService) {
-
+    localStorage.setItem('token','token')
   }
 
   loginSubmit(){
-    console.log(this.loginFormulario.value);
+    // console.log(this.loginFormulario.value);
     const {email, password} =this.loginFormulario.value
-    this.loginservice.login(email,password).subscribe(data=>console.log(data))
+    this.loginservice.login(email,password).subscribe()
   
 
   }
