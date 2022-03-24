@@ -5,6 +5,9 @@ obtenerUsuario = async(email, password) => {
     try {
 
         let respuesta;
+        /**
+         * menu hace referencia al id del usuario
+         */
 
         await pool.query(`
         select 
@@ -14,7 +17,8 @@ obtenerUsuario = async(email, password) => {
             per.primer_apellido,
             per.segundo_apellido,
             per.numero_identificacion,
-            per.id
+            per.id,
+            usr.id as menu
         from 
             personas per
             INNER JOIN usuarios usr
