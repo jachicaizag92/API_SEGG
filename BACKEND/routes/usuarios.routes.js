@@ -17,7 +17,7 @@ const router = Router();
  */
 
 router.post('/usr', [validarUsuario], users)
-router.post('/refresh-token', [passport.authenticate('jwt', { session: false, failureRedirect: "/api/login/pr" })], refreshToken)
+    // router.post('/refresh-token', [passport.authenticate('jwt', { session: false, failureRedirect: "/api/login/pr" })], refreshToken)
 router.post('/refresh-token', refreshToken)
 
 

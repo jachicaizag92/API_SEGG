@@ -16,17 +16,34 @@ require('dotenv').config();
  */
 const refreshToken = async(req = request, res = response) => {
 
-    const refreshToken = req.headers.refresh;
+    const { refresh } = req.headers;
     console.log(refreshToken);
 
     if (!(refreshToken)) {
         res.status(400).json({
             msg: "Algo fallo"
         })
-    } else {
-        const verifyRefreshToken = jwt.verify(refreshToken, process.env.SECRET_JWT_SEED)
-        console.log(verifyRefreshToken);
     }
+
+    // const verifyRefreshToken = jwt.verify(refreshToken, process.env.SECRET_JWT_SEED)
+    //     // console.log(verifyRefreshToken);
+    //     // console.log('hola');
+
+    jwt.verify(refresh, process.env.SECRET_JWT_SEED, (err, verifiedJwt) => {
+        if (err) {
+            res.send(err.message)
+        } else {
+            res.send(verifiedJwt)
+        }
+    })
+
+
+
+    res.json({
+        msg: true,
+
+
+    })
 
 
 }

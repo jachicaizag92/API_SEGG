@@ -37,6 +37,7 @@ export class LoginService {
         tap(resp =>{
           if(resp !== ''){
             localStorage.setItem('token', resp.token)
+            localStorage.setItem('refreshToken', resp.tokenRefresh)
           }
         })
       )
