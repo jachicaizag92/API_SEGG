@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "rest-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,12 +11,18 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.3",
+    "express-session": "^1.17.2",
     "jsonwebtoken": "^8.5.1",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.7.3",
-    "pg-promise": "^10.11.1"
+    "uuid": "^8.3.2"
   }
 }
