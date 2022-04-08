@@ -24,10 +24,7 @@ export class LoginService {
    }
 
   login(email:string, password:string):Observable<any>{
-    // email = 'dfarteaga@unicesmag.edu.co'
-    // password = 'Pruebas@Unicesmag'
 
-    // const url= 'api/auth/login';
     const url = 'http://localhost:3400/api/login/usr'
 
     const body = {email,password};

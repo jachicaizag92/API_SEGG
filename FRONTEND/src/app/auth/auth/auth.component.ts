@@ -12,6 +12,7 @@ import Swal from 'sweetalert2'
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
+  
 
 
   loginFormulario:FormGroup = this.fb.group({
@@ -21,42 +22,47 @@ export class AuthComponent implements OnInit {
 
 
   constructor(private fb:FormBuilder, private loginservice:LoginService, private router:Router ) {
-    localStorage.setItem('token','token')
-
-
-    
+    // localStorage.setItem('token','token')
   }
 
 
   
-
+/**
+ * 
+ */
   loginSubmit(){
-    // console.log(this.loginFormulario.value);
     const {email, password} =this.loginFormulario.value
     this.loginservice.login(email,password).subscribe(data => {
       console.log(data);
-
       if(data.msg === true){
-        this.router.navigateByUrl('/main')
+        this.onNavigate()
+        localStorage.clear();
       }else{
         Swal.fire({
           icon: 'info',
           title: 'Oops...',
           text: 'Usuario o contraseña incorrecta',
           footer: '<a href="https://ruah.unicesmag.edu.co/recuperarclave">Olvido su contraseña?</a>',
-
         })
       }
     })
-  
-
   }
 
+  onNavigate(){ 
+    let dat1=localStorage.getItem('token');
+    let dat2=localStorage.getItem('refreshToken');
+    window.location.href=`http://localhost:4200/login-token?token=${dat1}&refresh=${dat2}`; 
+    return true
+  }
 
 
   ngOnInit(): void {
 
-  
   }
 
+
+
+
+
 }
+

@@ -7,16 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+   
+
+  }
 
   ngOnInit(): void {
+    
+   
+    }
   }
   
-  onNavigate(){ 
-    //this.router.navigateByUrl("https://www.google.com"); 
-    //localStorage.setItem('token','token')
-    let dat1=localStorage.getItem('token');
-    let dat2=localStorage.getItem('refreshToken');
-    window.location.href=`http://localhost:4200/login-token?token=${dat1}&refresh=${dat2}`; 
-  }
-}
+  /**
+   * onNavigate
+   */
+  // onNavigate(){ 
+  //   let dat1=localStorage.getItem('token');
+  //   let dat2=localStorage.getItem('refreshToken');
+  //   window.location.href=`http://localhost:4200/login-token?token=${dat1}&refresh=${dat2}`; 
+  //   return true
+    
+  // }
+
